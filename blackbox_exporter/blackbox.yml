@@ -1,0 +1,11 @@
+modules:
+  http_2xx:
+    prober: http
+    #timeout: 5s
+    http: //www.google.com     
+      valid_status_codes: []
+  icmp:
+    prober: icmp
+    icmp: 
+      method: GET
+

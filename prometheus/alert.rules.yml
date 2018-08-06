@@ -1,0 +1,19 @@
+groups:
+- name: RAM
+  rules:
+  - alert: low_ram
+    expr: sum(node_memory_MemFree_bytes) / sum(node_memory_MemTotal_bytes) < 0.20
+    for: 1m
+    labels:
+      severity: "page"
+    annotations:
+      summary: "RAM usage has surpassed 80%"
+  
+  - alert: very_low_ram
+    expr: sum(node_memory_MemFree_bytes) / sum(node_memory_MemTotal_bytes) < 0.05
+    for: 1m
+    labels:
+      severity: "critical"
+    annotations:
+      summary: "RAM usage has surpassed 95%"
+

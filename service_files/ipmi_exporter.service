@@ -1,0 +1,10 @@
+[Uint]
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/root/ipmitool/ipmi_exporter2/ipmi_exporter.py
+
+[Install]
+WantedBy=multi-user.target
