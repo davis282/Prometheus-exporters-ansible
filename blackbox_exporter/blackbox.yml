@@ -2,10 +2,10 @@ modules:
   http_2xx:
     prober: http
     #timeout: 5s
-    http: //www.google.com     
+    http:   
       valid_status_codes: []
-  icmp:
+  icmp_ipv4:
     prober: icmp
     icmp: 
-      method: GET
+      preferred_ip_protocol: ip4
 
