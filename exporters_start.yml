@@ -142,26 +142,26 @@
 
   - name: remove files
     command: rm -rf prometheus-2.3.2.linux-amd64.tar.gz prometheus-2.3.2.linux-amd6
-  #  command: rm /etc/prometheus/prometheus.yml
+    command: rm /etc/prometheus/prometheus.yml
   
-#  - name: change owner4
- #   command: chown prometheus:prometheus /etc/prometheus/prometheus.yml
+  - name: change owner4
+    command: chown prometheus:prometheus /etc/prometheus/prometheus.yml
 
-  #- name: add users
-   # command: useradd --no-create-home --shell /bin/false blackbox_exporter
-    #command: useradd --no-create-home --shell /bin/false alertmanager
+  - name: add users
+    command: useradd --no-create-home --shell /bin/false blackbox_exporter
+    command: useradd --no-create-home --shell /bin/false alertmanager
 
   - name: get alertmanager
-    command: curl -LO https://github.com/prometheus/alertmanager/releases/download/v0.14.0/alertmanager-0.14.0.linux-amd64.tar.gz
+    command: curl -LO https://github.com/prometheus/alertmanager/releases/download/v0.15.1/alertmanager-0.15.1.linux-amd64.tar.gz
     
   - name: unpack alertmanager
-    command: tar xvf alertmanager-0.14.0.linux-amd64.tar.gz
+    command: tar xvf alertmanager-0.15.1.linux-amd64.tar.gz
 
   - name: move binary files 1
-    command: mv alertmanager-0.14.0.linux-amd64/alertmanager /usr/local/bin
+    command: mv alertmanager-0.15.1.linux-amd64/alertmanager /usr/local/bin
 
   - name: move binary files 2    
-    command: mv alertmanager-0.14.0.linux-amd64/amtool /usr/local/bin
+    command: mv alertmanager-0.15.1.linux-amd64/amtool /usr/local/bin
 
   - name: change alert owner
     command: chown alertmanager:alertmanager /usr/local/bin/alertmanager
@@ -170,12 +170,12 @@
     command: chown alertmanager:alertmanager /usr/local/bin/amtool
 
   - name: remove files
-    command: rm -rf alertmanager-0.14.0.linux-amd64 alertmanager-0.14.0.linux-amd64.tar.gz
+    command: rm -rf alertmanager-0.15.1.linux-amd64 alertmanager-0.15.1.linux-amd64.tar.gz
  
   - name: copy alertmanager files
     copy:
       src: ./alertmanager
-      dest: /etc/alertmanager
+      dest: /etc
       owner: root
       group: root
       mode: 0644
@@ -207,8 +207,8 @@
   - name: change bbowner
     command: rm -rf ~/blackbox_exporter-0.12.0.linux-amd64.tar.gz ~/blackbox_exporter-0.12.0.linux-amd64
 
- # - name: make directory
-  #  command: mkdir /etc/blackbox_exporter
+  - name: make directory
+    command: mkdir /etc/blackbox_exporter
 
   - name: copy blackbox files
     copy:
