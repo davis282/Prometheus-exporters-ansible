@@ -142,7 +142,7 @@
 
   - name: remove files
     command: rm -rf prometheus-2.3.2.linux-amd64.tar.gz prometheus-2.3.2.linux-amd6
-    command: rm /etc/prometheus/prometheus.yml
+#    command: rm /etc/prometheus/prometheus.yml
   
   - name: change owner4
     command: chown prometheus:prometheus /etc/prometheus/prometheus.yml
