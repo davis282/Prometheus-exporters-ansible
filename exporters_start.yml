@@ -162,7 +162,7 @@
   - name: copy binaries 2
     copy:
       src: /root/prometheus-2.3.2.linux-amd64/console_libraries
-      dest: /usr/local/bin
+      dest: /etc/prometheus
       owner: root
       group: root
       mode: 0755
