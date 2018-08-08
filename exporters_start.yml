@@ -14,6 +14,9 @@
       name: curl
       state: present
 
+#  - name: ADD USER
+#    command: useradd --no-create-home --shell /bin/false prometheus
+
   - name: copy service files
     copy:
       src: ./service_files/prometheus.service
@@ -84,7 +87,7 @@
       state: directory
       owner: root
       group: root
-      mode: 0644
+      mode: 0755
 
   - name: prom2 directory
     file:
@@ -92,7 +95,7 @@
       state: directory
       owner: root
       group: root
-      mode: 0644
+      mode: 0755
 
   - name: move prometheus files
     copy:
@@ -100,7 +103,7 @@
       dest: /etc/prometheus
       owner: root
       group: root
-      mode: 0644
+      mode: 0755
 
   - name: move prometheus files
     copy:
@@ -124,17 +127,49 @@
   - name: unpack prometheus
     command: tar xvfz prometheus-2.3.2.linux-amd64.tar.gz
 
-  - name: copy binaries
-    command: cp prometheus-2.3.2.linux-amd64/prometheus /usr/local/bin/
-    command: cp prometheus-2.3.2.linux-amd64/promtool /usr/local/bin/
+  - name: copy binaries 1
+    copy:
+      src: /root/prometheus-2.3.2.linux-amd64/prometheus
+      dest: /usr/local/bin
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: copy binaries 2
+    copy:
+      src: /root/prometheus-2.3.2.linux-amd64/promtool
+      dest: /usr/local/bin
+      owner: root
+      group: root
+      mode: 0755
+
+#  - name: copy binaries
+#    command: cp prometheus-2.3.2.linux-amd64/prometheus /usr/local/bin/
+#    command: cp prometheus-2.3.2.linux-amd64/promtool /usr/local/bin/
 
   - name: change owner2
     command: chown prometheus:prometheus /usr/local/bin/prometheus
     command: chown prometheus:prometheus /usr/local/bin/promtool
 
-  - name: copy consoles
-    command: cp -r prometheus-2.3.2.linux-amd64/consoles /etc/prometheus
-    command: cp -r prometheus-2.3.2.linux-amd64/console_libraries /etc/prometheus
+  - name: copy binaries 2
+    copy:
+      src: /root/prometheus-2.3.2.linux-amd64/consoles
+      dest: /etc/prometheus
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: copy binaries 2
+    copy:
+      src: /root/prometheus-2.3.2.linux-amd64/console_libraries
+      dest: /usr/local/bin
+      owner: root
+      group: root
+      mode: 0755
+
+#  - name: copy consoles
+#    command: cp -r prometheus-2.3.2.linux-amd64/consoles /etc/prometheus
+#    command: cp -r prometheus-2.3.2.linux-amd64/console_libraries /etc/prometheus
 
   - name: change owner3
     command: chown -R prometheus:prometheus /etc/prometheus/consoles
@@ -159,12 +194,16 @@
 
   - name: move binary files 1
     command: mv alertmanager-0.15.1.linux-amd64/alertmanager /usr/local/bin
-
+   
   - name: move binary files 2    
     command: mv alertmanager-0.15.1.linux-amd64/amtool /usr/local/bin
 
+  - name: mkdir alertm
+    command: mkdir /etc/alertmanager
+
   - name: change alert owner
     command: chown alertmanager:alertmanager /usr/local/bin/alertmanager
+    command: chown alertmanager:alertmanager /etc/alertmanager
 
   - name: change alert owner
     command: chown alertmanager:alertmanager /usr/local/bin/amtool
