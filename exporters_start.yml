@@ -115,10 +115,10 @@
 
   
   - name: change owner
-    command: chown prometheus:prometheus /etc/prometheus
+    command: chown root:root /etc/prometheus
 
   - name: change owner2
-    command: chown prometheus:prometheus /var/lib/prometheus
+    command: chown root:root /var/lib/prometheus
 
        
   - name: get prometheus
@@ -148,8 +148,8 @@
 #    command: cp prometheus-2.3.2.linux-amd64/promtool /usr/local/bin/
 
   - name: change owner2
-    command: chown prometheus:prometheus /usr/local/bin/prometheus
-    command: chown prometheus:prometheus /usr/local/bin/promtool
+    command: chown root:root /usr/local/bin/prometheus
+    command: chown root:root /usr/local/bin/promtool
 
   - name: copy binaries 2
     copy:
@@ -172,15 +172,15 @@
 #    command: cp -r prometheus-2.3.2.linux-amd64/console_libraries /etc/prometheus
 
   - name: change owner3
-    command: chown -R prometheus:prometheus /etc/prometheus/consoles
-    command: chown -R prometheus:prometheus /etc/prometheus/console_libraries
+    command: chown -R root:root /etc/prometheus/consoles
+    command: chown -R root:root /etc/prometheus/console_libraries
 
   - name: remove files
     command: rm -rf prometheus-2.3.2.linux-amd64.tar.gz prometheus-2.3.2.linux-amd6
 #    command: rm /etc/prometheus/prometheus.yml
   
   - name: change owner4
-    command: chown prometheus:prometheus /etc/prometheus/prometheus.yml
+    command: chown root:root /etc/prometheus/prometheus.yml
 
   - name: add users
     command: useradd --no-create-home --shell /bin/false blackbox_exporter
