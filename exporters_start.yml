@@ -199,7 +199,10 @@
     command: mv alertmanager-0.15.1.linux-amd64/amtool /usr/local/bin
 
   - name: mkdir alertm
-    command: mkdir /etc/alertmanager
+    file:
+      path: /etc/alertmanager
+      state: directory
+#      owner: alertmanager
 
   - name: change alert owner
     command: chown alertmanager:alertmanager /usr/local/bin/alertmanager
@@ -247,7 +250,9 @@
     command: rm -rf ~/blackbox_exporter-0.12.0.linux-amd64.tar.gz ~/blackbox_exporter-0.12.0.linux-amd64
 
   - name: make directory
-    command: mkdir /etc/blackbox_exporter
+    file: 
+      path: /etc/blackbox_exporter
+      state: directory
 
   - name: copy blackbox files
     copy:
@@ -266,8 +271,12 @@
 #  - name: change bbowner yml
 #    command: chown blackbox_exporter:blackbox_exporter /etc/blackbox_exporter/blackbox.yml
  
-  - name: pip python install
-    command: yum install -y python-pip
+#  - name: pip python install
+#    command: yum install -y python-pip
+
+  - name: pip install 
+    command: curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+    command: python get-pip.py
  
   - name: pip install prometheus client
     command: pip install prometheus_client
