@@ -276,6 +276,8 @@
 
   - name: pip install 
     command: curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+  
+  - name: get pip.py
     command: python get-pip.py
  
   - name: pip install prometheus client
