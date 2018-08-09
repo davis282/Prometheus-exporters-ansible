@@ -4,8 +4,8 @@ Wants=network-online.target
 After=network-online.target
 
 [Service]
-User=blackbox_exporter
-Group=blackbox_exporter
+User=root
+Group=root
 Type=simple
 ExecStart=/usr/local/bin/blackbox_exporter --config.file /etc/blackbox_exporter/blackbox.yml
 

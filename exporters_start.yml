@@ -257,14 +257,14 @@
       group: root
       mode: 0644
 
-  - name: change bbowner2
-    command: chown blackbox_exporter:blackbox_exporter /etc/blackbox_exporter
+#  - name: change bbowner2
+#    command: chown blackbox_exporter:blackbox_exporter /etc/blackbox_exporter
   
-  - name: change bbowner bin
-    command: chown blackbox_exporter:blackbox_exporter /usr/local/bin/blackbox_exporter
+#  - name: change bbowner bin
+#    command: chown blackbox_exporter:blackbox_exporter /usr/local/bin/blackbox_exporter
   
-  - name: change bbowner yml
-    command: chown blackbox_exporter:blackbox_exporter /etc/blackbox_exporter/blackbox.yml
+#  - name: change bbowner yml
+#    command: chown blackbox_exporter:blackbox_exporter /etc/blackbox_exporter/blackbox.yml
  
   - name: pip python install
     command: yum install -y python-pip
