@@ -224,7 +224,9 @@
 
   - name: Install grafana
     command: wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.2.1-1.x86_64.rpm
-    command: yum localinstall grafana-5.2.1-1.x86_64.rpm
+
+  - name: yum grafana
+    command: yum localinstall -y grafana-5.2.1-1.x86_64.rpm
 
   - name: get Node Exporter
     command: curl -LO https://github.com/prometheus/node_exporter/releases/download/v0.16.0/node_exporter-0.16.0.linux-amd64.tar.gz
@@ -233,7 +235,9 @@
     command: tar xvfz node_exporter-0.16.0.linux-amd64.tar.gz
 
   - name: set user and remove files
-    command: cp node_exporter-0.16.0.linux-amd64/node_exporter /usr/local/bin
+    command: mv node_exporter-0.16.0.linux-amd64/node_exporter /usr/local/bin/
+
+  - name: chown node
     command: chown node_exporter:node_exporter /usr/local/bin/node_exporter
     command: rm -rf node_exporter-0.16.0.linux-amd64.tar.gz node_exporter-0.16.0.linux-amd64
 
