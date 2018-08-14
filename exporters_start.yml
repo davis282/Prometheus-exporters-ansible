@@ -185,6 +185,7 @@
   - name: add users
     command: useradd --no-create-home --shell /bin/false blackbox_exporter
     command: useradd --no-create-home --shell /bin/false alertmanager
+    command: useradd --no-create-home --shell /bin/false node_exporter
 
   - name: get alertmanager
     command: curl -LO https://github.com/prometheus/alertmanager/releases/download/v0.15.1/alertmanager-0.15.1.linux-amd64.tar.gz
@@ -239,6 +240,8 @@
 
   - name: chown node
     command: chown node_exporter:node_exporter /usr/local/bin/node_exporter
+    
+  - name: rm node files
     command: rm -rf node_exporter-0.16.0.linux-amd64.tar.gz node_exporter-0.16.0.linux-amd64
 
   - name: Get blackbox
