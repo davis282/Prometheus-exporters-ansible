@@ -17,3 +17,22 @@ groups:
     annotations:
       summary: "RAM usage has surpassed 95%"
 
+groups:
+- name: Temperature
+  rules:
+  - alert: CPU1_high_temp
+    expr: avg(ipmi_cpu_temp1) > 35
+    for: 5m
+    labels:
+      severity: "page"
+    annotations:
+      summary: "CPU 1 Temperature is above 35 C"
+    
+  - alert: CPU2_high_temp
+    expr: avg(ipmi_cpu_temp2) > 35
+    for: 5m
+    labels:
+      severity: "page"
+    annotations:
+      summary: "CPU 2 Temperature is above 35 C"
+
